@@ -34,6 +34,7 @@ let coundBeNum c =
   |'e' ->true
   |'n' ->true
   |_ -> false 
+  //you can just *10 in base 10 to shift numbers to the left by 1 digit (big dummy is me)
 let combineNumb x y=
   int32(x.ToString() + y.ToString())
 
