@@ -36,7 +36,7 @@ let coundBeNum c =
   |_ -> false 
   //you can just *10 in base 10 to shift numbers to the left by 1 digit (big dummy is me)
 let combineNumb x y=
-  int32(x.ToString() + y.ToString())
+  Int32.Parse(x.ToString() + y.ToString())
 
 let day1_part1 (input:string[]) =
   let rec loop (input:string[]) (acc:int32) = 
@@ -55,6 +55,20 @@ let day1_part1_fold (input: string []):int =
   let num = if numChar.Length >1 then Int32.Parse(numChar[0].ToString()+numChar[numChar.Length-1].ToString()) else Int32.Parse(numChar[0].ToString() + numChar[0].ToString())
   printfn "%i" num
   num + x ) 0
+
+//Thank you abdulatif for the last / 1-1 =0 idea .
+let toNum (numChar:char array) = 
+     (Int32.Parse(numChar.[0].ToString())*10) + Int32.Parse(Array.last(numChar).ToString()) 
+let day1_simple (input:string[]) = 
+  let foo = 
+    input 
+    |> Array.map (fun f -> f.ToCharArray() |> Array.filter Char.IsDigit ) 
+  foo|> Array.map(fun numChar-> toNum numChar  ) |> Array.sum
+
+  
+  
+
+
 
   //too low you noob
 let foo (str: string) : string list =
@@ -98,6 +112,7 @@ let day1_part2 (input:string[]) =
     printfn "%s" sn
     s + int32(sn)
   ) 0
-let input = File.ReadAllLines("input.txt") 
+let input = File.ReadAllLines("./day1/input.txt") 
 input |> day1_part1
 input |> day1_part2
+input |> day1_simple
