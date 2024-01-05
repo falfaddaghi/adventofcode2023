@@ -81,6 +81,10 @@ let PowerOfAllGames (games: game array)=
                 l.Power + s
         )
         0
+
+
+#time 
 Games |> PowerOfAllGames  
 let test = testInput |> Array.map parseGame
 test |> PowerOfAllGames 
+#time

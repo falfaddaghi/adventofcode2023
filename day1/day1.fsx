@@ -72,14 +72,14 @@ let day1_simple (input:string[]) =
 
   //too low you noob
 let foo (str: string) : string list =
-    printfn "working on : %s " str
+    // printfn "working on : %s " str
     let rec loop (s: string) idx (nums: string list) =
         if idx = s.Length then
-            printfn "extracted numbers %A" nums
+            // printfn "extracted numbers %A" nums
             nums
         else 
         let c = s.[idx]
-        printfn "current char %c" c
+        // printfn "current char %c" c
         if Char.IsDigit c then 
             loop s (idx + 1) (nums@[c.ToString()])
         else 
@@ -91,7 +91,7 @@ let foo (str: string) : string list =
               |> List.filter (fun x -> x <= s.Length - idx)
               |> List.map (fun x -> 
               let baz = str.Substring(idx, x) 
-              printfn "sub string %s" baz
+              // printfn "sub string %s" baz
               baz 
               |> maptoNumber ,x )
               |> List.filter (fun f-> fst f |>  Option.isSome)
@@ -109,10 +109,16 @@ let day1_part2 (input:string[]) =
   |> Array.fold (fun s e-> 
     let res = foo e
     let sn = res.Head + List.last res
-    printfn "%s" sn
+    // printfn "%s" sn
     s + int32(sn)
   ) 0
 let input = File.ReadAllLines("./day1/input.txt") 
+#time
 input |> day1_part1
+#time
+#time
 input |> day1_part2
+#time
+#time
 input |> day1_simple
+#time
